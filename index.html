@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/css/bootstrap-select.min.css">
+        
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <section class="shipment_calculator">
+        <div id="container" class="container">
+            <div class="sec-title centered mt-5">
+                    <div class="title text-center">Get Costing Idea</div>
+                    <h2 class="text-center">Delivery Calculator</h2>
+                    <div class="text-center">Inter your data by selecting which area you want to deliver your goods</div>
+                </div>
+            <div id="tabs" class="tabs-container">
+    
+                <div class="tabs">
+                    <a id="tab1" data-tab="1" class="tab">In City</a>
+                    <a id="tab2" data-tab="2" class="tab">Near City</a>
+                    <a id="tab3" data-tab="3" class="tab">Out City</a>
+                </div>
+    
+                <div class="content">
+                        <!--Start First Form-->
+                        <div id="tabcontent1" data-tab="1" class="tabcontent">
+                            <h6 class="mb-4">Use this form to calcualte the only Dhaka & Khulna In city courier cost</h6>
+                            <form class="row g-3" id="mainform">
+                                <div class="col-md-6">
+                                    <label for="weight_input_in" class="form-label">Weight (max : 10 Kg)</label>
+                                    <input value="0" type="number" placeholder="Enter product weight" class="form-control"
+                                        id="input_weight_in" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="selling_price_input_in" class="form-label">Amount to collect</label>
+                                    <input value="0" type="number" placeholder="Enter amount to collect" class="form-control"
+                                        id="input_price_in" required>
+                                </div>
+                                <div class="col-md-12">
+                                    <label for="packagetype_input_in" class="form-label">Package Type</label>
+                                    <select id="input_package_in" class="selectpicker" data-live-search="true" data-container="body" data-placeholder="Choose...">
+                                        <option></option>
+                                        <optgroup label="Select your package type">
+                                        <option>Document</option>
+                                        <option>Electronics</option>
+                                        <option>Package</option>
+                                        <option>Accessories</option>
+                                        <option>Gifts</option>
+                                        <option>Shoppings</option>
+                                        <option>Medicine</option>
+                                        </optgroup>
+                                    </select>
+                                </div>
+                                <div class="col-md-12">
+                                    <label for="from_district_in" class="form-label">Choose City</label>
+                                    <select onchange="insideKhulna(this)" class="selectpicker" data-live-search="true" data-container="body" data-placeholder="Choose..." id="from_district_in" required>
+                                        <option selected value="11">Dhaka (In City)</option>
+                                        <option value="12">Khulna (In City)</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6" id="from_area_div_in">
+                                    <label class="form-label">From Area</label>
+                                    <select class="selectpicker" data-live-search="true" data-container="body" id="input_pick_area_in" data-placeholder="Choose...">
+                                        <option></option>
+                                        <optgroup label="1. North City Corporation">
+                                        <option>Abdullahpur</optoion>
+                                        <option>Agargaon</optoion>
+                                        <option>Banani</optoion>
+                                        <option>Bashundhara</optoion>
+                                        <option>Banasree</optoion>
+                                        <option>Baridhara</optoion>
+                                        <option>Badda</option>
+                                        <option>Beraid</option>
+                                        <option>Bawnia</optoion>
+                                        <option>Cantonment area</optoion>
+                                        <option>Dakshinkhan</optoion>
+                                        <option>Farmgate</option>
+                                        <option>Gulshan</optoion>
+                                        <option>Gabtali</option>
+                                        <option>Hatirjheel Lake</optoion>
+                                        <option>Khilkhet</optoion>
+                                        <option>Khilgaon</option>
+                                        <option>Kazipara</optoion>
+                                        <option>Kafrul</optoion>
+                                        <option>Mohammadpur</option>
+                                        <option>Mohakhali</optoion>
+                                        <option>Mirpur</optoion>
+                                        <option>Pallabi</optoion>
+                                        <option>Rampura</option>
+                                        <option>Sher-e-Bangla Nagar</optoion>
+                                        <option>Satarkul</option>
+                                        <option>Tejgaon</option>
+                                        <option>Uttara</optoion>
+                                        <option>Uttarkhan</optoion>
+                                        </optgroup>
+                                        
+                                        <optgroup label="2. South City Corporation">
+                                        <option>Baridhara</option>
+                                        <option>Dhanmondi</option>
+                                        <option>Dhaka Univeristy</option>
+                                        <option>Dania</option>
+                                        <option>Elephent Road</option>
+                                        <option>Green Road</option>
+                                        <option>Hazaribagh</option>
+                                        <option>Islampur</option>
+                                        <option>Jurain</option>
+                                        <option>Kamalapur</option>
+                                        <option>Kamrangirchar</option>
+                                        <option>Kotwali</option>
+                                        <option>Lalbagh</option>
+                                        <option>Matuail</option>
+                                        <option>Norda</option>
+                                        <option>New Market</option>
+                                        <option>Nimtoli</option>
+                                        <option>Paltan</option>
+                                        <option>Ramna</option>
+                                        <option>Sadarghat</option>
+                                        <option>Sabujbagh</option>
+                                        <option>Sadarghat</option>
+                                        <option>Sutrapur</option>
+                                        <option>Motijheel</option>
+                                        <option>Shyampur</option>
+                                        <option>Shahbagh</option>
+                                        <option>Shymoli</option>
+                                        <option>Mirpur DOHS</option>
+                                        <option>Mirpur 1</option>
+                                        <option>Mirpur 2</option>
+                                        <option>Mirpur 3</option>
+                                        <option>Mirpur 4</option>
+                                        <option>Mirpur 5</option>
+                                        <option>Mirpur 6</option>
+                                        <option>Mirpur 7</option>
+                                        <option>Mirpur 8</option>
+                                        <option>Mirpur 9</option>
+                                        <option>Mirpur 10</option>
+                                        <option>Mirpur 11</option>
+                                        <option>Mirpur 12</option>
+                                    </optgroup>
+                                    </select>
+                                </div>
+                                <div class="col-md-6" id="to_area_div_in">
+                                    <label class="form-label">To Area</label>
+                                    <select class="selectpicker" data-live-search="true" data-container="body" data-placeholder="Choose..." required id="input_deliver_area_in">
+                                        <option></option>
+                                        <optgroup label="1. North City Corporation">
+                                        <option>Abdullahpur</optoion>
+                                        <option>Agargaon</optoion>
+                                        <option>Banani</optoion>
+                                        <option>Bashundhara</optoion>
+                                        <option>Banasree</optoion>
+                                        <option>Baridhara</optoion>
+                                        <option>Badda</option>
+                                        <option>Beraid</option>
+                                        <option>Bawnia</optoion>
+                                        <option>Cantonment area</optoion>
+                                        <option>Dakshinkhan</optoion>
+                                        <option>Farmgate</option>
+                                        <option>Gulshan</optoion>
+                                        <option>Gabtali</option>
+                                        <option>Hatirjheel Lake</optoion>
+                                        <option>Khilkhet</optoion>
+                                        <option>Khilgaon</option>
+                                        <option>Kazipara</optoion>
+                                        <option>Kafrul</optoion>
+                                        <option>Mohammadpur</option>
+                                        <option>Mohakhali</optoion>
+                                        <option>Mirpur</optoion>
+                                        <option>Pallabi</optoion>
+                                        <option>Rampura</option>
+                                        <option>Sher-e-Bangla Nagar</optoion>
+                                        <option>Satarkul</option>
+                                        <option>Tejgaon</option>
+                                        <option>Uttara</optoion>
+                                        <option>Uttarkhan</optoion>
+                                        </optgroup>
+                                        
+                                        <optgroup label="2. South City Corporation">
+                                        <option>Baridhara</option>
+                                        <option>Dhanmondi</option>
+                                        <option>Dhaka Univeristy</option>
+                                        <option>Dania</option>
+                                        <option>Elephent Road</option>
+                                        <option>Green Road</option>
+                                        <option>Hazaribagh</option>
+                                        <option>Islampur</option>
+                                        <option>Jurain</option>
+                                        <option>Kamalapur</option>
+                                        <option>Kamrangirchar</option>
+                                        <option>Kotwali</option>
+                                        <option>Lalbagh</option>
+                                        <option>Matuail</option>
+                                        <option>Norda</option>
+                                        <option>New Market</option>
+                                        <option>Nimtoli</option>
+                                        <option>Paltan</option>
+                                        <option>Ramna</option>
+                                        <option>Sadarghat</option>
+                                        <option>Sabujbagh</option>
+                                        <option>Sadarghat</option>
+                                        <option>Sutrapur</option>
+                                        <option>Motijheel</option>
+                                        <option>Shyampur</option>
+                                        <option>Shahbagh</option>
+                                        <option>Shymoli</option>
+                                        <option>Mirpur DOHS</option>
+                                        <option>Mirpur 1</option>
+                                        <option>Mirpur 2</option>
+                                        <option>Mirpur 3</option>
+                                        <option>Mirpur 4</option>
+                                        <option>Mirpur 5</option>
+                                        <option>Mirpur 6</option>
+                                        <option>Mirpur 7</option>
+                                        <option>Mirpur 8</option>
+                                        <option>Mirpur 9</option>
+                                        <option>Mirpur 10</option>
+                                        <option>Mirpur 11</option>
+                                        <option>Mirpur 12</option>
+                                    </optgroup>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 d-none" id="from_area_div_in_2nd">
+                                    <label class="form-label">From Area</label>
+                                    <select  required id="input_pick_area_in_2nd"
+                                    class="selectpicker" data-live-search="true" data-container="body" data-placeholder="Choose...">
+                                        <option></option>
+                                        <optgroup label="1. Khulna Metropoliton Area">
+                                        <option>Daulatpur</option>
+                                        <option>Ful-baria Gate</option> 
+                                        <option>Ful-tola</option>
+                                        <option>Hazi Mohsin Road</option>
+                                        <option>Jahanabad Cantonment</option> 
+                                        <option>Shiromoni</option>
+                                        </optgroup>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 d-none" id="to_area_div_in_2nd">
+                                    <label class="form-label">To Area</label>
+                                    <select required id="input_deliver_area_in_2nd"
+                                    class="selectpicker" data-live-search="true" data-container="body" data-placeholder="Choose...">
+                                        <option></option>
+                                        <optgroup label="1. Khulna Metropoliton Area">
+                                        <option>Daulatpur</option>
+                                        <option>Ful-baria Gate</option> 
+                                        <option>Ful-tola</option>
+                                        <option>Hazi Mohsin Road</option>
+                                        <option>Jahanabad Cantonment</option> 
+                                        <option>Shiromoni</option>
+                                        </optgroup>
+                                    </select>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" onclick="myResultIn()" id="submit_btn_in"
+                                        class="btn btn-primary">Calculate</button>
+                                </div>
+                            </form>
+                            <!--In side result-->
+                            <div class="shipping_result_in">
+                                <div class="row row-cols-2">
+                                    <div class="col-md-3">
+                                        <p><strong>Package :</strong></p>
+                                        <p>Weight</p>
+                                        <p><strong id="weight_in">00 Kg</strong></p>
+                                        <p>Amt. to clct</p>
+                                        <p><strong id="price_in">00 BDT</strong></p>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <p><strong id="package_in">Not selected</strong></strong></p>
+                                        <p>Pickup Area</p>
+                                        <p><strong id="pickup_result_in">From Area</strong></p>
+                                        <p>Delivery Area</p>
+                                        <p><strong id="deliver_result_in">To Area</strong></p>
+                                    </div>
+                                    <div class="col-md-6 devider_in">
+                                        <h2> Tk. <span id="total_ammount_in">00</span><button onclick="myReset()" id="reset"><i
+                                                    class="bi bi-arrow-clockwise"></i></button></h2>
+                                        <p id="pickuparea">Total Payable Ammount</p>
+                                        <p>Delivery Charge: <span id="deliver_charge_in">Tk. 00</span></p>
+                                        <p>COD Charge: <span id="cod_charge_in">Tk. 00</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                            <form action="http://pathaboo.com/for/areas">
+                            <button class="btn btn-primary text-center mt-4 fulprice">Full Pricing Plans</button>
+                            </form>
+                            </div>
+                        </div>
+                        <!--End First Form-->
+        
+        
+                        <!--Start Second Form-->
+                        <div id="tabcontent2" data-tab="2" class="tabcontent">
+                            <h6 class="mb-4">Use this form to calcualte the only Dhaka Near city courier cost</h6>
+                            <form class="row g-3" id="mainform2">
+                                <div class="col-md-6">
+                                    <label for="weight_input_near" class="form-label">Weight (max : 10 Kg)</label>
+                                    <input value="0" type="number" placeholder="Enter product weight" class="form-control"
+                                        id="input_weight_near">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="selling_price_input_near" class="form-label">Amount to collect</label>
+                                    <input value="0" type="number" placeholder="Enter amount to collect" class="form-control"
+                                        id="input_price_near">
+                                </div>
+                                <div class="col-md-12">
+                                    <label for="packagetype_input_near" class="form-label">Package Type</label>
+                                    <select id="input_package_near" class="selectpicker" data-live-search="true" data-container="body" data-placeholder="Choose...">
+                                        <option></option>
+                                        <optgroup label="Select your package type">
+                                        <option>Document</option>
+                                        <option>Electronics</option>
+                                        <option>Package</option>
+                                        <option>Accessories</option>
+                                        <option>Gifts</option>
+                                        <option>Shoppings</option>
+                                        <option>Medicine</option>
+                                        </optgroup>
+                                    </select>
+                                </div>
+                                <div class="col-md-6" id="from_area_div_near_metro">
+                                    <label class="form-label">From</label>
+                                    <select id="input_pick_area_near" class="selectpicker" data-live-search="true" data-container="body" data-placeholder="Choose...">
+    
+                                        <option></option>
+                                        <optgroup label="1. Near cities">
+                                        <option>Rajuk Residensial Area</option>
+                                        <option>Savar</option>
+                                        <option>Savar Cantonment</option>
+                                        <option>Savar DOHS</option>
+                                        <option>Savar Radio Colony</option>
+                                        </optgroup>
+                                        <optgroup label="2. North City Corporation">
+                                        <option>Abdullahpur</optoion>
+                                        <option>Agargaon</optoion>
+                                        <option>Banani</optoion>
+                                        <option>Bashundhara</optoion>
+                                        <option>Banasree</optoion>
+                                        <option>Baridhara</optoion>
+                                        <option>Badda</option>
+                                        <option>Beraid</option>
+                                        <option>Bawnia</optoion>
+                                        <option>Cantonment area</optoion>
+                                        <option>Dakshinkhan</optoion>
+                                        <option>Farmgate</option>
+                                        <option>Gulshan</optoion>
+                                        <option>Gabtali</option>
+                                        <option>Hatirjheel Lake</optoion>
+                                        <option>Khilkhet</optoion>
+                                        <option>Khilgaon</option>
+                                        <option>Kazipara</optoion>
+                                        <option>Kafrul</optoion>
+                                        <option>Mohammadpur</option>
+                                        <option>Mohakhali</optoion>
+                                        <option>Mirpur</optoion>
+                                        <option>Pallabi</optoion>
+                                        <option>Rampura</option>
+                                        <option>Sher-e-Bangla Nagar</optoion>
+                                        <option>Satarkul</option>
+                                        <option>Tejgaon</option>
+                                        <option>Uttara</optoion>
+                                        <option>Uttarkhan</optoion>
+                                        </optgroup>
+                                        
+                                        <optgroup label="3. South City Corporation">
+                                        <option>Baridhara</option>
+                                        <option>Dhanmondi</option>
+                                        <option>Dhaka Univeristy</option>
+                                        <option>Dania</option>
+                                        <option>Elephent Road</option>
+                                        <option>Green Road</option>
+                                        <option>Hazaribagh</option>
+                                        <option>Islampur</option>
+                                        <option>Jurain</option>
+                                        <option>Kamalapur</option>
+                                        <option>Kamrangirchar</option>
+                                        <option>Kotwali</option>
+                                        <option>Lalbagh</option>
+                                        <option>Matuail</option>
+                                        <option>Norda</option>
+                                        <option>New Market</option>
+                                        <option>Nimtoli</option>
+                                        <option>Paltan</option>
+                                        <option>Ramna</option>
+                                        <option>Sadarghat</option>
+                                        <option>Sabujbagh</option>
+                                        <option>Sadarghat</option>
+                                        <option>Sutrapur</option>
+                                        <option>Motijheel</option>
+                                        <option>Shyampur</option>
+                                        <option>Shahbagh</option>
+                                        <option>Shymoli</option>
+                                        <option>Mirpur DOHS</option>
+                                        <option>Mirpur 1</option>
+                                        <option>Mirpur 2</option>
+                                        <option>Mirpur 3</option>
+                                        <option>Mirpur 4</option>
+                                        <option>Mirpur 5</option>
+                                        <option>Mirpur 6</option>
+                                        <option>Mirpur 7</option>
+                                        <option>Mirpur 8</option>
+                                        <option>Mirpur 9</option>
+                                        <option>Mirpur 10</option>
+                                        <option>Mirpur 11</option>
+                                        <option>Mirpur 12</option>
+                                        </optgroup>
+                                    </select>
+                                </div>
+                                <div class="col-md-6" id="to-area_div_near_metro">
+                                    <label class="form-label">Destination</label>
+                                    <select id="input_deliver_area_near" class="selectpicker" data-live-search="true" data-container="body" data-placeholder="Choose...">
+                                        <option></option>
+                                        <optgroup label="1. Nare cities">
+                                        <option>Rajuk Residensial Area</option>
+                                        <option>Savar</option>
+                                        <option>Savar Cantonment</option>
+                                        <option>Savar DOHS</option>
+                                        <option>Savar Radio Colony</option>
+                                        </optgroup>
+                                        <optgroup label="2. North City Corporation">
+                                        <option>Abdullahpur</optoion>
+                                        <option>Agargaon</optoion>
+                                        <option>Banani</optoion>
+                                        <option>Bashundhara</optoion>
+                                        <option>Banasree</optoion>
+                                        <option>Baridhara</optoion>
+                                        <option>Badda</option>
+                                        <option>Beraid</option>
+                                        <option>Bawnia</optoion>
+                                        <option>Cantonment area</optoion>
+                                        <option>Dakshinkhan</optoion>
+                                        <option>Farmgate</option>
+                                        <option>Gulshan</optoion>
+                                        <option>Gabtali</option>
+                                        <option>Hatirjheel Lake</optoion>
+                                        <option>Khilkhet</optoion>
+                                        <option>Khilgaon</option>
+                                        <option>Kazipara</optoion>
+                                        <option>Kafrul</optoion>
+                                        <option>Mohammadpur</option>
+                                        <option>Mohakhali</optoion>
+                                        <option>Mirpur</optoion>
+                                        <option>Pallabi</optoion>
+                                        <option>Rampura</option>
+                                        <option>Sher-e-Bangla Nagar</optoion>
+                                        <option>Satarkul</option>
+                                        <option>Tejgaon</option>
+                                        <option>Uttara</optoion>
+                                        <option>Uttarkhan</optoion>
+                                        </optgroup>
+                                        
+                                        <optgroup label="3. South City Corporation">
+                                        <option>Baridhara</option>
+                                        <option>Dhanmondi</option>
+                                        <option>Dhaka Univeristy</option>
+                                        <option>Dania</option>
+                                        <option>Elephent Road</option>
+                                        <option>Green Road</option>
+                                        <option>Hazaribagh</option>
+                                        <option>Islampur</option>
+                                        <option>Jurain</option>
+                                        <option>Kamalapur</option>
+                                        <option>Kamrangirchar</option>
+                                        <option>Kotwali</option>
+                                        <option>Lalbagh</option>
+                                        <option>Matuail</option>
+                                        <option>Norda</option>
+                                        <option>New Market</option>
+                                        <option>Nimtoli</option>
+                                        <option>Paltan</option>
+                                        <option>Ramna</option>
+                                        <option>Sadarghat</option>
+                                        <option>Sabujbagh</option>
+                                        <option>Sadarghat</option>
+                                        <option>Sutrapur</option>
+                                        <option>Motijheel</option>
+                                        <option>Shyampur</option>
+                                        <option>Shahbagh</option>
+                                        <option>Shymoli</option>
+                                        <option>Mirpur DOHS</option>
+                                        <option>Mirpur 1</option>
+                                        <option>Mirpur 2</option>
+                                        <option>Mirpur 3</option>
+                                        <option>Mirpur 4</option>
+                                        <option>Mirpur 5</option>
+                                        <option>Mirpur 6</option>
+                                        <option>Mirpur 7</option>
+                                        <option>Mirpur 8</option>
+                                        <option>Mirpur 9</option>
+                                        <option>Mirpur 10</option>
+                                        <option>Mirpur 11</option>
+                                        <option>Mirpur 12</option>
+                                        </optgroup>
+                                    </select>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" onclick="myResultNear()" id="submit_btn_near"
+                                        class="btn btn-primary">Calculate</button>
+                                </div>
+                            </form>
+                            <!--Near result-->
+                            <div class="shipping_result_near">
+                                <div class="row row-cols-2">
+                                    <div class="col-md-3">
+                                        <p><strong>Package :</strong></p>
+                                        <p>Weight</p>
+                                        <p><strong id="weight_near">00 Kg</strong></p>
+                                        <p>Amt. to clct</p>
+                                        <p><strong id="price_near">00 BDT</strong></p>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <p><strong id="package_near">Not selected</strong></strong></p>
+                                        <p>Pickup Area</p>
+                                        <p><strong id="pickup_result_near">From Area</strong></p>
+                                        <p>Delivery Area</p>
+                                        <p><strong id="deliver_result_near">To Area</strong></p>
+                                    </div>
+                                    <div class="col-md-6 devider_in">
+                                        <h2> Tk. <span id="total_ammount_near">00</span><button onclick="myReset()"
+                                                id="reset"><i class="bi bi-arrow-clockwise"></i></button></h2>
+                                        <p id="pickuparea">Total Payable Ammount</p>
+                                        <p>Delivery Charge: <span id="deliver_charge_near">Tk. 00</span></p>
+                                        <p>COD Charge: <span id="cod_charge_near">Tk. 00</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                            <form action="http://pathaboo.com/for/areas">
+                            <button class="btn btn-primary text-center mt-4 fulprice">Full Pricing Plans</button>
+                            </form>
+                        </div>
+                        </div>
+                        <!--End Second Form-->
+        
+        
+                        <!--Strat Third Form-->
+                        <div id="tabcontent3" data-tab="3" class="tabcontent">
+                            <h6 class="mb-4">Use this form to calcualte the only Dhaka, Khulna & Jessor all city courier cost</h6>
+                            <form class="row g-3" id="mainform3">
+                                <div class="col-md-6">
+                                    <label for="weight_input_out" class="form-label">Weight (max : 10 Kg)</label>
+                                    <input value="0" type="number" placeholder="Enter product weight" class="form-control"
+                                        id="input_weight_out">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="selling_price_input_out" class="form-label">Amount to collect</label>
+                                    <input value="0" type="number" placeholder="Enter amount to collect" class="form-control"
+                                        id="input_price_out">
+                                </div>
+                                <div class="col-md-12">
+                                    <label for="packagetype_input_out" class="form-label">Package Type</label>
+                                    <select id="input_package_out" class="selectpicker" data-live-search="true" data-container="body" data-placeholder="Choose...">
+                                        <option></option>
+                                        <optgroup label="Select your package type">
+                                        <option>Document</option>
+                                        <option>Electronics</option>
+                                        <option>Package</option>
+                                        <option>Accessories</option>
+                                        <option>Gifts</option>
+                                        <option>Shoppings</option>
+                                        <option>Medicine</option>
+                                        </optgroup>
+                                    </select>
+                                </div>
+    
+                                <!--For Out Dhaka Area-->
+                                <div class="col-md-6" id="from_area_div_out_dhaka">
+                                    <label class="form-label">From</label>
+                                    <select id="input_pick_area_out" class="selectpicker" data-live-search="true" data-container="body" data-placeholder="Choose...">
+                                        <option></option>
+                                        <optgroup label="1. North City Corporation">
+                                        <option>Abdullahpur</optoion>
+                                        <option>Agargaon</optoion>
+                                        <option>Banani</optoion>
+                                        <option>Bashundhara</optoion>
+                                        <option>Banasree</optoion>
+                                        <option>Baridhara</optoion>
+                                        <option>Badda</option>
+                                        <option>Beraid</option>
+                                        <option>Bawnia</optoion>
+                                        <option>Cantonment area</optoion>
+                                        <option>Dakshinkhan</optoion>
+                                        <option>Farmgate</option>
+                                        <option>Gulshan</optoion>
+                                        <option>Gabtali</option>
+                                        <option>Hatirjheel Lake</optoion>
+                                        <option>Khilkhet</optoion>
+                                        <option>Khilgaon</option>
+                                        <option>Kazipara</optoion>
+                                        <option>Kafrul</optoion>
+                                        <option>Mohammadpur</option>
+                                        <option>Mohakhali</optoion>
+                                        <option>Mirpur</optoion>
+                                        <option>Pallabi</optoion>
+                                        <option>Rampura</option>
+                                        <option>Sher-e-Bangla Nagar</optoion>
+                                        <option>Satarkul</option>
+                                        <option>Tejgaon</option>
+                                        <option>Uttara</optoion>
+                                        <option>Uttarkhan</optoion>
+                                        </optgroup>
+                                        
+        
+                                        <optgroup label="2. South City Corporation">
+                                        <option>Baridhara</option>
+                                        <option>Dhanmondi</option>
+                                        <option>Dhaka Univeristy</option>
+                                        <option>Dania</option>
+                                        <option>Elephent Road</option>
+                                        <option>Green Road</option>
+                                        <option>Hazaribagh</option>
+                                        <option>Islampur</option>
+                                        <option>Jurain</option>
+                                        <option>Kamalapur</option>
+                                        <option>Kamrangirchar</option>
+                                        <option>Kotwali</option>
+                                        <option>Lalbagh</option>
+                                        <option>Matuail</option>
+                                        <option>Norda</option>
+                                        <option>New Market</option>
+                                        <option>Nimtoli</option>
+                                        <option>Paltan</option>
+                                        <option>Ramna</option>
+                                        <option>Sadarghat</option>
+                                        <option>Sabujbagh</option>
+                                        <option>Sadarghat</option>
+                                        <option>Sutrapur</option>
+                                        <option>Motijheel</option>
+                                        <option>Shyampur</option>
+                                        <option>Shahbagh</option>
+                                        <option>Shymoli</option>
+                                        <option>Mirpur DOHS</option>
+                                        <option>Mirpur 1</option>
+                                        <option>Mirpur 2</option>
+                                        <option>Mirpur 3</option>
+                                        <option>Mirpur 4</option>
+                                        <option>Mirpur 5</option>
+                                        <option>Mirpur 6</option>
+                                        <option>Mirpur 7</option>
+                                        <option>Mirpur 8</option>
+                                        <option>Mirpur 9</option>
+                                        <option>Mirpur 10</option>
+                                        <option>Mirpur 11</option>
+                                        <option>Mirpur 12</option>
+                                        </optgroup>
+                                        <optgroup label="3. Dhaka Nare Cities">
+                                        <option>Rajuk Residensial Area</option>
+                                        <option>Savar</option>
+                                        <option>Savar Cantonment</option>
+                                        <option>Savar DOHS</option>
+                                        <option>Savar Radio Colony</option>
+                                        </optgroup>
+                                        <optgroup label="4. Khulna Metropoliton Area">
+                                        <option>Daulatpur</option>
+                                        <option>Ful-baria Gate</option> 
+                                        <option>Ful-tola</option>
+                                        <option>Hazi Mohsin Road</option>
+                                        <option>Jahanabad Cantonment</option> 
+                                        <option>Shiromoni</option>
+                                        </optgroup>
+                                        <optgroup label="5. Jessore">
+                                        <option>Jessore Sadar</option>
+                                        <option>Jessore Cantonment</option> 
+                                        <option>Jessore Airport</option>
+                                        </optgroup>  
+                                    </select>
+                                </div>
+                                <div class="col-md-6" id="to-area_div_out_dhaka">
+                                    <label class="form-label">Destination</label>
+                                    <select id="input_deliver_area_out" class="selectpicker" data-live-search="true" data-container="body" data-placeholder="Choose..." >
+                                        <option></option>
+                                        <optgroup label="1. North City Corporation">
+                                        <option>Abdullahpur</optoion>
+                                        <option>Agargaon</optoion>
+                                        <option>Banani</optoion>
+                                        <option>Bashundhara</optoion>
+                                        <option>Banasree</optoion>
+                                        <option>Baridhara</optoion>
+                                        <option>Badda</option>
+                                        <option>Beraid</option>
+                                        <option>Bawnia</optoion>
+                                        <option>Cantonment area</optoion>
+                                        <option>Dakshinkhan</optoion>
+                                        <option>Farmgate</option>
+                                        <option>Gulshan</optoion>
+                                        <option>Gabtali</option>
+                                        <option>Hatirjheel Lake</optoion>
+                                        <option>Khilkhet</optoion>
+                                        <option>Khilgaon</option>
+                                        <option>Kazipara</optoion>
+                                        <option>Kafrul</optoion>
+                                        <option>Mohammadpur</option>
+                                        <option>Mohakhali</optoion>
+                                        <option>Mirpur</optoion>
+                                        <option>Pallabi</optoion>
+                                        <option>Rampura</option>
+                                        <option>Sher-e-Bangla Nagar</optoion>
+                                        <option>Satarkul</option>
+                                        <option>Tejgaon</option>
+                                        <option>Uttara</optoion>
+                                        <option>Uttarkhan</optoion>
+                                        </optgroup>
+        
+                                        <optgroup label="2. South City Corporation">
+                                        <option>Baridhara</option>
+                                        <option>Dhanmondi</option>
+                                        <option>Dhaka Univeristy</option>
+                                        <option>Dania</option>
+                                        <option>Elephent Road</option>
+                                        <option>Green Road</option>
+                                        <option>Hazaribagh</option>
+                                        <option>Islampur</option>
+                                        <option>Jurain</option>
+                                        <option>Kamalapur</option>
+                                        <option>Kamrangirchar</option>
+                                        <option>Kotwali</option>
+                                        <option>Lalbagh</option>
+                                        <option>Matuail</option>
+                                        <option>Norda</option>
+                                        <option>New Market</option>
+                                        <option>Nimtoli</option>
+                                        <option>Paltan</option>
+                                        <option>Ramna</option>
+                                        <option>Sadarghat</option>
+                                        <option>Sabujbagh</option>
+                                        <option>Sadarghat</option>
+                                        <option>Sutrapur</option>
+                                        <option>Motijheel</option>
+                                        <option>Shyampur</option>
+                                        <option>Shahbagh</option>
+                                        <option>Shymoli</option>
+                                        <option>Mirpur DOHS</option>
+                                        <option>Mirpur 1</option>
+                                        <option>Mirpur 2</option>
+                                        <option>Mirpur 3</option>
+                                        <option>Mirpur 4</option>
+                                        <option>Mirpur 5</option>
+                                        <option>Mirpur 6</option>
+                                        <option>Mirpur 7</option>
+                                        <option>Mirpur 8</option>
+                                        <option>Mirpur 9</option>
+                                        <option>Mirpur 10</option>
+                                        <option>Mirpur 11</option>
+                                        <option>Mirpur 12</option> 
+                                    </optgroup>
+                                    <optgroup label="3. Dhaka Nare Cities">
+                                        <option>Rajuk Residensial Area</option>
+                                        <option>Savar</option>
+                                        <option>Savar Cantonment</option>
+                                        <option>Savar DOHS</option>
+                                        <option>Savar Radio Colony</option>
+                                        </optgroup>
+                                    <optgroup label="4. Khulna Metropoliton Area">
+                                        <option>Daulatpur</option>
+                                        <option>Ful-baria Gate</option> 
+                                        <option>Ful-tola</option>
+                                        <option>Hazi Mohsin Road</option>
+                                        <option>Jahanabad Cantonment</option> 
+                                        <option>Shiromoni</option>
+                                    </optgroup> 
+                                    <optgroup label="5. Jessore">
+                                        <option>Jessore Sadar</option>
+                                        <option>Jessore Cantonment</option> 
+                                        <option>Jessore Airport</option>
+                                    </optgroup> 
+                                    </select>
+                                </div>
+        
+                                <div class="col-12">
+                                    <button type="submit" onclick="myResultOut()" id="submit_btn_out"
+                                        class="btn btn-primary">Calculate</button>
+                                </div>
+                            </form>
+                            <!--Out side result-->
+                            <div class="shipping_result_out">
+                                <div class="row row-cols-2">
+                                    <div class="col-md-3">
+                                        <p><strong>Package :</strong></p>
+                                        <p>Weight</p>
+                                        <p><strong id="weight_out">00 Kg</strong></p>
+                                        <p>Amt. to clct</p>
+                                        <p><strong id="price_out">00 BDT</strong></p>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <p><strong id="package_out">Not selected</strong></strong></p>
+                                        <p>Pickup Area</p>
+                                        <p><strong id="pickup_result_out">From Area</strong></p>
+                                        <p>Delivery Area</p>
+                                        <p><strong id="deliver_result_out">To Area</strong></p>
+                                    </div>
+                                    <div class="col-md-6 devider_out">
+                                        <h2> Tk. <span id="total_ammount_out">00</span>
+                                        <button onclick="myReset()" id="reset"><i class="bi bi-arrow-clockwise"></i></button>
+                                        </h2>
+                                        <p id="pickuparea">Total Payable Ammount</p>
+                                        <p>Delivery Charge: <span id="deliver_charge_out">Tk. 00</span></p>
+                                        <p>COD Charge: <span id="cod_charge_out">Tk. 00</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                            <form action="http://pathaboo.com/for/areas">
+                            <button class="btn btn-primary text-center mt-4 fulprice">Full Pricing Plans</button>
+                            </form>
+                        </div>
+                        </div>
+                        <!--End Third Form-->
+                    </div>
+                
+            </div>
+        </div>
+    </section>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/js/bootstrap-select.min.js"></script>
+    
+<script src="script.js"></script>
+
+</html>
